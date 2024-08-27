@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="bell-container" style="cursor: pointer;">
+        <div *ngIf="subscribed" (click)="toggleSubscription()">
+            <img src="assets/bell-fill.svg" alt="bell-fill" width="32" height="32">
+        </div>
+        <div *ngIf="!subscribed" (click)="toggleSubscription()">
+            <img src="assets/bell.svg" alt="bell" width="32" height="32">
+        </div>
+    </div>
+</div>

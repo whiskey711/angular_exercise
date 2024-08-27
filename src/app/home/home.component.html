@@ -1,0 +1,46 @@
+<div class="container">
+    <app-login></app-login>
+</div>
+    
+<div class="container mt-5">
+    <app-bell></app-bell>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <app-roleform></app-roleform>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class="form-group d-flex align-items-center">
+                <input class="mx-3" type="text" class="form-control" 
+                placeholder="Enter text here" [(ngModel)]="labelContent">
+                <label class="">{{labelContent|capitalizeWords}}</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>{{title}}</h1>
+
+    <div *ngIf="items.length === 0; then noItems else showItems"></div>
+
+    <ng-template #noItems>
+        No items
+    </ng-template>
+
+    <ng-template #showItems>
+        <ul>
+        <li *ngFor="let item of items">
+            {{item}}
+        </li>
+        </ul>
+    </ng-template>
+
+</div>
+  
+
