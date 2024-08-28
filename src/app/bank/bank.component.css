@@ -1,0 +1,5 @@
+/* Custom styles for the Bank Dashboard component */
+.table th, .table td {
+    vertical-align: middle;
+  }
+  
