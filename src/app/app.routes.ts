@@ -4,6 +4,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PostComponent } from './post/post.component';
 import { BankComponent } from './bank/bank.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'post', component: PostComponent },
-  { path: 'bank', component: BankComponent }
-  
+  { path: 'bank', component: BankComponent },
+  { path: 'add-customer', component: AddCustomerComponent },
+
 ];

@@ -3,10 +3,10 @@
 
     <div class="row mt-4 mb-3">
         <div class="col-8">
-            <input type="text" class="form-control" placeholder="Search by ID">
+            <input type="text" class="form-control" placeholder="Search by ID" [(ngModel)]="searchId" (keydown)="onEnterdown($event)">
         </div>
         <div class="col-4 text-end">
-            <button class="btn btn-outline-secondary">View all</button>
+            <button class="btn btn-outline-secondary" (click)="viewAllCustomer()">View all</button>
         </div>
     </div>
 
@@ -14,22 +14,28 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-0">Customer Accounts</h5>
-                <button class="btn btn-success">Add new customer</button>
+                <button class="btn btn-success" (click)="navigateToAddCustomer()">Add new customer</button>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Account ID</th>
-                        <th>Account Balance</th>
-                        <th>Interest rate</th>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Street Number</th>
+                        <th>Postal Code</th>
+                        <th>City</th>
+                        <th>Province</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>123</td>
-                        <td>$5000.00</td>
-                        <td>1 %</td>
+                    <tr *ngFor="let c of filterCustomers">
+                        <td>{{c.customerId}}</td>
+                        <td>{{c.name}}</td>
+                        <td>{{c.address.streetNumber}}</td>
+                        <td>{{c.address.postalCode}}</td>
+                        <td>{{c.address.city}}</td>
+                        <td>{{c.address.province}}</td>
                         <td>
                             <button class="btn btn-primary btn-sm me-2">Update</button>
                             <button class="btn btn-danger btn-sm">Delete</button>

@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <h2 class="text-center">Add New Customer</h2>
+  
+    <form (ngSubmit)="onSubmit()" #customerForm="ngForm" class="mt-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          required
+          [(ngModel)]="customer.name"
+          name="name"
+          #name="ngModel">
+        <div *ngIf="name.invalid && name.touched" class="text-danger">
+          Name is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="streetNumber" class="form-label">Street Number</label>
+        <input
+          type="text"
+          id="streetNumber"
+          class="form-control"
+          required
+          [(ngModel)]="customer.streetNumber"
+          name="streetNumber"
+          #streetNumber="ngModel">
+        <div *ngIf="streetNumber.invalid && streetNumber.touched" class="text-danger">
+          Street Number is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="postalCode" class="form-label">Postal Code</label>
+        <input
+          type="text"
+          id="postalCode"
+          class="form-control"
+          required
+          [(ngModel)]="customer.postalCode"
+          name="postalCode"
+          #postalCode="ngModel">
+        <div *ngIf="postalCode.invalid && postalCode.touched" class="text-danger">
+          Postal Code is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="customerType" class="form-label">Customer Type</label>
+        <select
+          id="customerType"
+          class="form-select"
+          required
+          [(ngModel)]="customer.customerType"
+          name="customerType"
+          #customerType="ngModel">
+          <option value="" disabled selected>Select type</option>
+          <option value="person">Person</option>
+          <option value="company">Company</option>
+        </select>
+        <div *ngIf="customerType.invalid && customerType.touched" class="text-danger">
+          Customer Type is required
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Submit</button>
+    </form>
+  </div>
+  
