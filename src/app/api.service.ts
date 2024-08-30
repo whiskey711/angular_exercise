@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from './models/item';
 import { Customer } from './models/customer';
+import { Customerdto } from './models/customerdto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,16 @@ export class ApiService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
+  deleteCustomer(id: number): Observable<void> {
+    console.log(id);
+    return this.http.delete<void>(`${this.myUrl + 'customer/remove/'}/${id}`);
+  }
+
   createItem(item: Item): Observable<Item> {
     return this.http.post<Item>(`${this.baseUrl}`, item);
   }
 
-  createCustomer(c: Customer): Observable<Customer> {
+  createCustomer(c: Customerdto): Observable<Customer> {
     return this.http.post<Customer>(`${this.myUrl + "/customer"}`, c);
   }
 

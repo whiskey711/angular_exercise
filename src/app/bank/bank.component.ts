@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { response } from 'express';
 
 @Component({
   selector: 'app-bank',
@@ -13,20 +14,20 @@ import { Router } from '@angular/router';
 })
 export class BankComponent implements OnInit {
   customers: Customer[] = [
-    {customerId: 1, name: "Bruce", address: {
-      streetNumber: "1234 Big Street",
-      postalCode: "123 abc",
-      city: "Gothem",
-      province: "New York"
-    }},
-    {customerId: 2, name: "Clark", address: {
-      streetNumber: "9876 Little Ave",
-      postalCode: "987 zyx",
-      city: "Metropolis",
-      province: "New York"
-    }}
+    // {customerId: 1, name: "Bruce", address: {
+    //   streetNumber: "1234 Big Street",
+    //   postalCode: "123 abc",
+    //   city: "Gothem",
+    //   province: "New York"
+    // }},
+    // {customerId: 2, name: "Clark", address: {
+    //   streetNumber: "9876 Little Ave",
+    //   postalCode: "987 zyx",
+    //   city: "Metropolis",
+    //   province: "New York"
+    // }}
   ];
-  searchId: number = 0;
+  searchId: number|undefined = undefined;
   filterCustomers = this.customers;
 
   constructor(private apiService: ApiService, private router: Router) {}
@@ -66,4 +67,13 @@ export class BankComponent implements OnInit {
     this.router.navigate(['/add-customer']);
   }
 
+  deleteCustomer(id: number): void {
+    let confirmation = confirm('Are you sure you want to delete this customer?');
+    if (confirmation) {
+      this.apiService.deleteCustomer(id);
+      alert('Customer deleted successfully.');
+      this.getCustomers();
+    }
+    
+  }
 }

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Customerdto } from '../models/customerdto';
+import { ApiService } from '../api.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-add-customer',
@@ -10,18 +13,30 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-customer.component.css'
 })
 export class AddCustomerComponent {
-  customer = {
+  customerdto: Customerdto = {
     name: '',
-    streetNumber: '',
-    postalCode: '',
+    address: {
+      streetNumber: '',
+      postalCode: '',
+    },
     customerType: ''
   };
 
+  constructor(private apiService: ApiService) {}
+
   onSubmit() {
-    if (this.customer.name && this.customer.streetNumber && this.customer.postalCode && this.customer.customerType) {
+    if (this.customerdto.name && this.customerdto.address.streetNumber && this.customerdto.address.postalCode && this.customerdto.customerType) {
       // Handle form submission, e.g., send data to the server
-      console.log('Customer data:', this.customer);
-      alert('Customer added successfully!');
+      this.apiService.createCustomer(this.customerdto).subscribe(
+        response => {
+          if (response) {
+            alert("Customer created successfully");
+          } else {
+            alert("Something wrong");
+          }
+        }
+      );
+      
     }
   }
 }

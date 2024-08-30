@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container m-5">
     <h2 class="text-center">Add New Customer</h2>
   
     <form (ngSubmit)="onSubmit()" #customerForm="ngForm" class="mt-4">
@@ -9,7 +9,7 @@
           id="name"
           class="form-control"
           required
-          [(ngModel)]="customer.name"
+          [(ngModel)]="customerdto.name"
           name="name"
           #name="ngModel">
         <div *ngIf="name.invalid && name.touched" class="text-danger">
@@ -24,7 +24,7 @@
           id="streetNumber"
           class="form-control"
           required
-          [(ngModel)]="customer.streetNumber"
+          [(ngModel)]="customerdto.address.streetNumber"
           name="streetNumber"
           #streetNumber="ngModel">
         <div *ngIf="streetNumber.invalid && streetNumber.touched" class="text-danger">
@@ -39,7 +39,7 @@
           id="postalCode"
           class="form-control"
           required
-          [(ngModel)]="customer.postalCode"
+          [(ngModel)]="customerdto.address.postalCode"
           name="postalCode"
           #postalCode="ngModel">
         <div *ngIf="postalCode.invalid && postalCode.touched" class="text-danger">
@@ -53,7 +53,7 @@
           id="customerType"
           class="form-select"
           required
-          [(ngModel)]="customer.customerType"
+          [(ngModel)]="customerdto.customerType"
           name="customerType"
           #customerType="ngModel">
           <option value="" disabled selected>Select type</option>

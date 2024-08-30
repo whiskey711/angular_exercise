@@ -38,7 +38,7 @@
                         <td>{{c.address.province}}</td>
                         <td>
                             <button class="btn btn-primary btn-sm me-2">Update</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <button class="btn btn-danger btn-sm" (click)="deleteCustomer(c.customerId)">Delete</button>
                         </td>
                     </tr>
                     <!-- Additional rows can be added here -->
