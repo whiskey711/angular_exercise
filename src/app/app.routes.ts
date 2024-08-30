@@ -5,6 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PostComponent } from './post/post.component';
 import { BankComponent } from './bank/bank.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'post', component: PostComponent },
   { path: 'bank', component: BankComponent },
   { path: 'add-customer', component: AddCustomerComponent },
+  { path: 'update-customer/:id', component: UpdateCustomerComponent },
 
 ];

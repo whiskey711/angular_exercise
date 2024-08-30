@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, OnInit } from '@angular/core';
 import { Customer } from '../models/customer';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import { response } from 'express';
 
 @Component({
   selector: 'app-bank',
@@ -13,20 +12,7 @@ import { response } from 'express';
   templateUrl: './bank.component.html'
 })
 export class BankComponent implements OnInit {
-  customers: Customer[] = [
-    // {customerId: 1, name: "Bruce", address: {
-    //   streetNumber: "1234 Big Street",
-    //   postalCode: "123 abc",
-    //   city: "Gothem",
-    //   province: "New York"
-    // }},
-    // {customerId: 2, name: "Clark", address: {
-    //   streetNumber: "9876 Little Ave",
-    //   postalCode: "987 zyx",
-    //   city: "Metropolis",
-    //   province: "New York"
-    // }}
-  ];
+  customers: Customer[] = [];
   searchId: number|undefined = undefined;
   filterCustomers = this.customers;
 
@@ -67,13 +53,16 @@ export class BankComponent implements OnInit {
     this.router.navigate(['/add-customer']);
   }
 
+  navigateToUpdateCustomer(id: number) {
+    this.router.navigate(['/update-customer', id]);
+  }
+
   deleteCustomer(id: number): void {
     let confirmation = confirm('Are you sure you want to delete this customer?');
     if (confirmation) {
-      this.apiService.deleteCustomer(id);
+      this.apiService.deleteCustomer(id).subscribe(response => console.log(response));
       alert('Customer deleted successfully.');
-      this.getCustomers();
+      window.location.reload();
     }
-    
   }
 }

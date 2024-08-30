@@ -16,7 +16,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.myUrl + '/customer/all'}`);
+    let response = this.http.get<Customer[]>(`${this.myUrl + '/customer/all'}`);
+    return response;
   }
 
   getItems(): Observable<Item[]> {
@@ -29,7 +30,7 @@ export class ApiService {
 
   deleteCustomer(id: number): Observable<void> {
     console.log(id);
-    return this.http.delete<void>(`${this.myUrl + 'customer/remove/'}/${id}`);
+    return this.http.delete<void>(`${this.myUrl + '/customer/remove'}/${id}`);
   }
 
   createItem(item: Item): Observable<Item> {
@@ -42,5 +43,9 @@ export class ApiService {
 
   updateItem(item: Item): Observable<Item> {
     return this.http.put<Item>(`${this.baseUrl}/${item.id}`, item);
+  }
+
+  updateCustomer(c: Customerdto, id: number): Observable<Customer> {
+    return this.http.put<Customer>(`${this.myUrl}/customer/update/${id}`, c);
   }
 }
