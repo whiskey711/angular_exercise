@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <h1 class="text-center">Bank Application</h1>
+
+    <div class="row mt-4 mb-3">
+        <div class="col-8">
+            <input type="text" class="form-control" placeholder="Search by City" [(ngModel)]="city" (keydown)="onEnterdown($event)">
+        </div>
+        <div class="col-4 text-end">
+            <button class="btn btn-outline-secondary" (click)="viewAllAccounts()">View all</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Accounts</h5>
+                <button class="btn btn-success">Add new account</button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Account type</th>
+                        <th>Balance</th>
+                        <th>Interest Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of filterAccounts">
+                        <td>{{a.interestRate == null ? 'Checking' : 'Saving'}}</td>
+                        <td>{{a.balance}}</td>
+                        <td>{{a.interestRate}}</td>                     
+                    </tr>
+                    <!-- Additional rows can be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

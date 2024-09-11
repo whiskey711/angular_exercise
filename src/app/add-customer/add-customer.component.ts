@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Customerdto } from '../models/customerdto';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-customer',
@@ -21,7 +22,7 @@ export class AddCustomerComponent {
     customerType: ''
   };
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   onSubmit() {
     if (this.customerdto.name && this.customerdto.address.streetNumber && this.customerdto.address.postalCode && this.customerdto.customerType) {
@@ -30,7 +31,7 @@ export class AddCustomerComponent {
         response => {
           if (response) {
             alert("Customer created successfully");
-            window.location.reload();
+            this.router.navigate(['/customer']);
           } else {
             alert("Something wrong");
           }

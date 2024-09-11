@@ -1,20 +1,17 @@
-<div class="container m-5">
+<div class="container m-5" >
     <h2 class="text-center">Update Customer</h2>
   
-    <form (ngSubmit)="onSubmit()" #customerForm="ngForm" class="mt-4">
+    <form (ngSubmit)="onSubmit()" #customerForm="ngForm" class="mt-4" *ngIf="customer; else loading">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input
           type="text"
           id="name"
           class="form-control"
-          required
-          [(ngModel)]="customerdto.name"
+          readonly
+          [(ngModel)]="customer.name"
           name="name"
           #name="ngModel">
-        <div *ngIf="name.invalid && name.touched" class="text-danger">
-          Name is required
-        </div>
       </div>
   
       <div class="mb-3">
@@ -23,13 +20,34 @@
           type="text"
           id="streetNumber"
           class="form-control"
-          required
-          [(ngModel)]="customerdto.address.streetNumber"
+          readonly
+          [(ngModel)]="customer.address.streetNumber"
           name="streetNumber"
           #streetNumber="ngModel">
-        <div *ngIf="streetNumber.invalid && streetNumber.touched" class="text-danger">
-          Street Number is required
-        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input
+          type="text"
+          id="city"
+          class="form-control"
+          readonly
+          [(ngModel)]="customer.address.city"
+          name="city"
+          #streetNumber="ngModel">
+      </div>
+
+      <div class="mb-3">
+        <label for="province" class="form-label">Province</label>
+        <input
+          type="text"
+          id="province"
+          class="form-control"
+          readonly
+          [(ngModel)]="customer.address.province"
+          name="province"
+          #streetNumber="ngModel">
       </div>
   
       <div class="mb-3">
@@ -39,7 +57,7 @@
           id="postalCode"
           class="form-control"
           required
-          [(ngModel)]="customerdto.address.postalCode"
+          [(ngModel)]="customer.address.postalCode"
           name="postalCode"
           #postalCode="ngModel">
         <div *ngIf="postalCode.invalid && postalCode.touched" class="text-danger">
@@ -47,26 +65,13 @@
         </div>
       </div>
   
-      <div class="mb-3">
-        <label for="customerType" class="form-label">Customer Type</label>
-        <select
-          id="customerType"
-          class="form-select"
-          required
-          [(ngModel)]="customerdto.customerType"
-          name="customerType"
-          #customerType="ngModel">
-          <option value="" disabled selected>Select type</option>
-          <option value="person">Person</option>
-          <option value="company">Company</option>
-        </select>
-        <div *ngIf="customerType.invalid && customerType.touched" class="text-danger">
-          Customer Type is required
-        </div>
-      </div>
-  
       <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Submit</button>
     </form>
+
+    <ng-template #loading>
+      <p>Loading customer data...</p>
+    </ng-template>
+
   </div>
   
 

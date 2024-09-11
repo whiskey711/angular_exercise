@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Item } from './models/item';
 import { Customer } from './models/customer';
 import { Customerdto } from './models/customerdto';
+import { Account } from './models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,21 @@ export class ApiService {
 
   getCustomers(): Observable<Customer[]> {
     let response = this.http.get<Customer[]>(`${this.myUrl + '/customer/all'}`);
+    return response;
+  }
+
+  getAccounts(): Observable<Account[]> {
+    let response = this.http.get<Account[]>(`${this.myUrl + '/account/all'}`);
+    return response;
+  }
+
+  getCustomerById(id: string): Observable<Customer> {
+    let response = this.http.get<Customer>(`${this.myUrl}/customer/${id}`);
+    return response;
+  }
+
+  getAccountByCity(city: string): Observable<Account[]> {
+    let response = this.http.get<Account[]>(`${this.myUrl}/account?city=${city}`);
     return response;
   }
 

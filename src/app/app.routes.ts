@@ -6,6 +6,7 @@ import { PostComponent } from './post/post.component';
 import { BankComponent } from './bank/bank.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
+import { AccountComponent } from './account/account.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,8 +14,9 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'post', component: PostComponent },
-  { path: 'bank', component: BankComponent },
+  { path: 'customer', component: BankComponent },
   { path: 'add-customer', component: AddCustomerComponent },
   { path: 'update-customer/:id', component: UpdateCustomerComponent },
+  { path: 'account', component: AccountComponent },
 
 ];
